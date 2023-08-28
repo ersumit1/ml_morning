@@ -1,0 +1,78 @@
+#28-08-2023
+#check constraint
+
+
+show databases;
+use morning_ml;
+
+show tables;
+
+select * from test3;
+select * from test3 where id = 1;
+select * from test3 where id = 1 or id = 3 or id = 4;
+select * from test3 where id in (1,3,5);
+select * from test3 where id not in (1,3,5);
+select * from test3 where name is NULL;
+select * from test3 where name is not NULL;
+select * from test3 where name is null or name='aaa';
+select * from test3 where name is null or name in ('aaa','ccc');
+
+select id from test3;
+select id from test3 where id>=1 and id<=20;
+select id from test3 where id>1 and id<20;
+select id from test3 where id between 1 and 20;
+
+desc test3;
+insert into test3 (name) values ('bbb');
+insert into test3 (name) values ('aab'),('abb'),('bba'),('baa');
+insert into test3 (name) values ('abz'),('AAA');
+select * from test3;
+select * from test3 order by id desc;
+
+select name from test3 where name between 'aaa' and 'ccc';
+select name from test3 where name >='aaa' and name <='ccc';
+
+select * from test3 where name in (null,'aaa');		 --  will not consider records with null
+
+select * from test3 where id > 3 or id < 3;
+select * from test3 where id != 0;
+select * from test3 where id <> 0;
+select * from test3 where 1;
+select * from test3 where 0;
+select * from test3 where 10;
+select * from test3 where -1; --  where always work with zero(false) and non-zero (true)
+select * from test3;
+insert into test3 values (0,'surat');
+select * from test3 where id;
+select * from test3 where id=0;
+
+select "welcome to MySQL";
+select 2+3;
+select "welcome to MySQL" as msg;
+select 2+3 ans;
+
+select 10>=2;
+select 10<=2;
+select 10>=2 and 10<=5;
+
+create table test4 (id int default 0,name varchar(20));
+insert into test4 (id,name) values 
+(1,'aaa'),
+(2,'bbb'),
+(3,'ccc'),
+(4,'ddd');
+
+select * from test4;
+
+insert into test4 (name) values ('eee'),('fff');
+
+select * from test4 where id=0;
+select * from test4 where id<>0;
+select * from test4 where id<>0 or 1;
+select * from test4 where id;
+
+select id<>0 or 1 as something from test4;
+select id,id<>0,id<>0 and 1 as something from test4;
+
+select "welcome","to","mysql";
+select "welcome","to","mysql" from test4;
