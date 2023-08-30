@@ -1,0 +1,49 @@
+create database morning_ml;
+use ml_morning;
+
+show tables;
+
+create table test5(
+	id int primary key auto_increment,
+	name varchar(20)
+);
+
+insert into test5 (name) values ("aaa"),("bbb"),("ccc");
+insert into test5 (name) values (null),(null);
+select * from test5;
+
+select count(*) from test5;
+select count(id) from test5;
+select count(name) from test5 where name is not null;
+select count(name) from test5 where name is null;
+
+
+create table test6(
+	id int ,
+	name varchar(20)
+);
+
+
+insert into test6 (id,name) values (1,"aaa"),(2,"bbb"),(3,"ccc");
+insert into test6 (id,name) values (4,null),(5,null);
+insert into test6 (id,name) values (null,"ddd");
+insert into test6 (id,name) values (null,null);
+
+select * from test6;
+
+select count(*) from test6;
+select count(id) from test6;
+select count(name) from test6;
+select count(*) from test6 where id>2;
+select count(id) from test6 where id>2;
+
+select count(*) from test6 where name>="ddd";
+select count(name) from test6 where name>="ddd";
+
+select count(*) from test6 where name>"aaa" and id>=2;
+select count(*) from test6 where name>"aaa" or id>=2;
+select count(name) from test6 where name>"aaa" or id>=2;
+select count(id) from test6 where name>"aaa" or id>=2;
+
+select max(id),min(id),sum(id),avg(id),sum(id)/count(*),sum(id)/count(id) from test6;
+select max(name),min(name),sum(name),avg(name) from test6;
