@@ -1,0 +1,32 @@
+#01-09-2023   ||   group in count
+
+create table test2 (id int, name varchar(20),city varchar(20));
+
+insert into test2 values 
+(1,"aaa","st"),
+(2,"bbb","st"),
+(3,"ccc","pune"),
+(4,"ddd","Pune"),
+(5,"fff","PUne"),
+(6,"eee","vapi");
+
+insert into test2 values (7,"aaa","st");
+insert into test2 values (8,"st","aaa");
+select * from test2;
+
+select distinct name from test2;
+select distinct city from test2;
+select distinct name,city from test2;
+select distinct city,name from test2;
+select name,distinct city from test2;
+
+select "aaa" >= "AAA";
+select "aaa" > "AAA","AAA" > "aaa","aaa" = "AAA";
+
+
+select city from test2 group by city;
+select max(id),city from test2 group by city;
+select distinct id,city from test2 group by city;
+select sum(id),city from test2 group by city;
+select sum(id),city from test2 group by city order by city;
+select sum(id),city from test2 group by city order by city desc;
