@@ -1,0 +1,30 @@
+04-09-2023  || delete,update
+
+
+
+use hr;
+show tables;
+
+desc employees;
+select first_name from employees;
+select first_name from employees where first_name like 'a%';
+select first_name from employees where first_name like 'a%a';
+
+select first_name from employees where first_name like '%a%';
+# search name where a is on 3rd position
+select first_name from employees where first_name like '__a%';
+# search name with a length of 4 chars and a is on last position 
+select first_name from employees where first_name like '___a';
+# search name with a length of 5 chars and a is on 3rd position 
+select first_name from employees where first_name like '__a__';
+
+#search name starts with vowells
+select first_name from employees where first_name like 'a%' or 
+first_name like 'e%' or
+first_name like 'i%' or
+first_name like 'o%' or
+first_name like 'u%';
+
+select first_name from employees where first_name regexp '^[aeiou]';
+select first_name from employees where first_name regexp '^[aeiou]' and
+first_name regexp '[aeiou]$';
