@@ -1,0 +1,43 @@
+04-09-2023  ||  update & delete
+
+use morning_ml;
+show tables;
+
+desc result;
+select * from result;
+
+update result set cid = 104 where sid = 2;
+insert into result values (3,104,200);
+
+SET SQL_SAFE_UPDATES = 0;
+update result set sid=300, cid=10400 where score=200;
+update result set sid=300, cid=10400 where score=20.21;
+
+update result set score=100;
+update result set score=101 where 1;
+update result set score=102 where 0;
+
+update result set score = score + score * 0.10 where 1;
+
+update result set cid=105 where cid=104;
+
+select * from result;
+select avg(score) from result;
+select * from result where score < avg(score);
+select * from result where having score < avg(score);
+
+update result set score = 60 where cid =10400;
+
+delete from result where sid=300;
+delete from result;
+delete from result where 1;
+truncate result;
+
+select * from result;
+desc result;
+
+drop table if exists result;
+show warnings;
+
+select * from table_name where fname regexp '^[aeiou]' and fname regexp '[aeiou]$';
+select * from table_name where fname regexp '^[aeiou]' and fname regexp '[aeiou]$';

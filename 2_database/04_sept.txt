@@ -1,4 +1,4 @@
-04-09-2023  || delete,update
+04-09-2023  || where clause
 
 
 
