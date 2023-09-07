@@ -1,0 +1,141 @@
+06-05-2023  ||  alter
+
+/*adding a column
+ALTER TABLE table_name
+ADD column_name datatype;
+
+modifying a column
+ALTER TABLE table_name
+MODIFY column_name new_datatype;
+
+
+adding a constraint
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name PRIMARY KEY (column_name);
+
+droping a column
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
+renaming a column
+ALTER TABLE table_name
+CHANGE old_column_name new_column_name datatype;
+
+renaming a table
+ALTER TABLE old_table_name
+RENAME TO new_table_name;
+
+adding an index
+ALTER TABLE table_name
+ADD INDEX index_name (column_name);
+
+dropping an index
+ALTER TABLE table_name
+DROP INDEX index_name;
+
+adding foreign key constraint
+ALTER TABLE child_table
+ADD CONSTRAINT fk_name FOREIGN KEY (column_name)
+REFERENCES parent_table(parent_column_name);
+
+dropping a constraint
+ALTER TABLE table_name
+DROP CONSTRAINT constraint_name;
+*/
+
+use morning_ml;
+
+show tables;
+
+create table alter_ex (id int, name varchar(20));
+
+# **** Add column in an empty table ****
+desc alter_ex;
+
+# add column name age of type int : in an empty table
+alter table alter_ex add column age int;
+desc alter_ex;
+
+# add two columns named city of type varchar(20) and gender with the type of char(1) : in an empty table
+alter table alter_ex add column (city varchar(20),gender char(1));
+desc alter_ex;
+
+# add two columns named lname of type varchar(20) not null (column level constaint)
+# and department with the type of varchar(20) with domain value (HR,development,testing) (use check constaint - column / table level constraint) 
+# : in an empty table
+alter table alter_ex add column (
+	lname varchar(20) not null,
+    dept_name varchar(20) check (dept_name in ('HR','dev','testing'))
+);
+desc alter_ex;
+
+# add two columns named email of type varchar(20) 
+# and mobile with the type of int : (use mobile and email as composite unique key)
+# : in an empty table
+alter table alter_ex add column (
+	email varchar(20),
+    mobile int,
+    unique (email,mobile)
+);
+desc alter_ex;
+
+# **** remove column from empty table ****
+
+# remove single column
+desc alter_ex;
+alter table alter_ex
+drop column lname;
+
+desc alter_ex;
+
+# remove single column
+desc alter_ex;
+alter table alter_ex
+drop column lname;
+
+desc alter_ex;
+
+# remove multiple columns : not allowed
+alter table alter_ex
+drop column city,dept_name;
+desc alter_ex;
+
+# remove column which is a part of composite key
+alter table alter_ex
+drop column email;
+desc alter_Ex;
+
+# **** modify column ****
+# add not null to the column : city and also change the data_type
+alter table alter_ex
+modify column city varchar(30) not null;
+
+desc alter_Ex;
+
+# add primary key constraint to id column using modify keyword
+alter table alter_ex
+modify column id int primary key;
+desc alter_Ex;
+
+# **** add constraint Unique and check (column level) ****
+# add unique key constaint to age column
+alter table alter_ex
+add constraint age_pk unique(age);
+desc alter_Ex;
+
+# add check constaint to gender column
+alter table alter_ex
+add constraint gender_check check(gender in ('m','f','o'));
+desc alter_Ex;
+
+
+# **** drop constraint Unique and check (column level) ****
+# remove check constarint
+alter table alter_ex
+drop constraint gender_check;
+desc alter_ex;
+
+# remove unique constarint
+alter table alter_ex
+drop constraint age_pk;
+desc alter_ex;
